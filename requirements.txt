@@ -1,0 +1,6 @@
+pywin32>=306
+PyYAML>=6.0
+streamlit>=1.31
+pandas>=2.1
+win10toast>=0.9
+win11toast>=0.35
