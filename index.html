@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home Security Agent</title>
+    <meta
+      name="description"
+      content="Local-only host integrity + threat visibility for Windows 11. Observes and explains. Does not block."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="logo">Home Security Agent</div>
+        <nav class="nav-links">
+          <a href="#what">What/Isn’t</a>
+          <a href="#screens">Screens</a>
+          <a href="#how">How it works</a>
+          <a href="#quickstart">Quick start</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Windows 11 • Local-only</p>
+            <h1>Home Security Agent</h1>
+            <p class="tagline">
+              Local-only host integrity + threat visibility for Windows 11.
+            </p>
+            <p class="subtext">
+              Observes and explains. Does not block. Recommended alongside Windows Defender.
+            </p>
+            <div class="cta-row">
+              <a class="btn primary" href="https://github.com/sergioB79/Home-Security-Agent">View on GitHub</a>
+              <a class="btn ghost" href="#quickstart">Read Manual / Quick Start</a>
+            </div>
+            <div class="chips">
+              <span>Local-only</span>
+              <span>Sysmon-based</span>
+              <span>Explainable findings</span>
+              <span>Alerting (toast + Event Log)</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="card">
+              <div class="card-title">Keep Defender ON</div>
+              <p>
+                This is a visibility tool, not a blocker. Use alongside Windows Defender
+                (AMSI + memory protections).
+              </p>
+            </div>
+            <div class="card accent">
+              <div class="card-title">Visibility in 30 seconds</div>
+              <ul>
+                <li>What executed</li>
+                <li>What changed</li>
+                <li>What persisted</li>
+                <li>What talked to the network</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="what" class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2>What it is / What it isn’t</h2>
+            <p>Short, honest scope so expectations stay clean.</p>
+          </div>
+          <div class="two-col">
+            <div class="panel">
+              <h3>What it is</h3>
+              <ul>
+                <li>Personal EDR-lite on top of Sysmon</li>
+                <li>Correlation + scoring + explainable findings</li>
+                <li>Targeted allowlisting to reduce noise</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>What it isn’t</h3>
+              <ul>
+                <li>Not an antivirus replacement</li>
+                <li>Not memory/kernel detection</li>
+                <li>Not for enterprise SOC usage</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            Keep Windows Defender ON (AMSI + memory protections). This tool complements it.
+          </div>
+        </div>
+      </section>
+
+      <section id="screens" class="section alt">
+        <div class="container">
+          <div class="section-title">
+            <h2>Screenshots</h2>
+            <p>Real UI, real signal. No marketing fluff.</p>
+          </div>
+          <div class="cards">
+            <article class="shot-card">
+              <img src="assets/screenshot1.png" alt="Dashboard overview with priority table" />
+              <h4>Dashboard Overview</h4>
+              <p>Priority queue, open High/Critical, and last alert status.</p>
+            </article>
+            <article class="shot-card">
+              <img src="assets/screenshot2.png" alt="Finding detail showing Execute to Persist" />
+              <h4>Execute → Persist</h4>
+              <p>Exact image, parent, and persistence target in one place.</p>
+            </article>
+            <article class="shot-card">
+              <img src="assets/screenshot3.png" alt="Allowlist and ignore workflow" />
+              <h4>Allowlist + Ignore</h4>
+              <p>Targeted rules and safe ignore workflow to keep signal clean.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2>How it works</h2>
+            <p>Simple, local, and explainable.</p>
+          </div>
+          <div class="diagram">
+            <span>Sysmon</span>
+            <span class="arrow">→</span>
+            <span>Windows Event Log</span>
+            <span class="arrow">→</span>
+            <span>Agent</span>
+            <span class="arrow">→</span>
+            <span>SQLite</span>
+            <span class="arrow">→</span>
+            <span>Dashboard + Alerts</span>
+          </div>
+          <ul class="bullets">
+            <li>Sysmon runs as an always-on Windows service.</li>
+            <li>Agent correlates: Drop→Execute, Execute→Persist, Script→Network.</li>
+            <li>Dashboard is on-demand (read-only).</li>
+            <li>Alerts are deduped and throttled to avoid spam.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="quickstart" class="section alt">
+        <div class="container">
+          <div class="section-title">
+            <h2>Quick start</h2>
+            <p>Copy/paste friendly.</p>
+          </div>
+          <div class="code-grid">
+            <div>
+              <h4>Install</h4>
+              <pre><code>pip install -r requirements.txt</code></pre>
+            </div>
+            <div>
+              <h4>Run agent</h4>
+              <pre><code>python agent.py</code></pre>
+            </div>
+            <div>
+              <h4>Run dashboard</h4>
+              <pre><code>streamlit run dashboard.py</code></pre>
+            </div>
+          </div>
+          <p class="note">
+            For always-on operation, run the Task Scheduler installer (see MANUAL.md).
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="https://github.com/sergioB79/Home-Security-Agent">View on GitHub</a>
+            <a class="btn ghost" href="https://github.com/sergioB79/Home-Security-Agent/blob/main/MANUAL.md">Manual</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="footer-title">Home Security Agent</div>
+          <p>Security note: this is not a prevention tool; keep Defender enabled.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/sergioB79/Home-Security-Agent">GitHub</a>
+          <a href="https://github.com/sergioB79/Home-Security-Agent/blob/main/MANUAL.md">Manual</a>
+          <a href="#">License</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
